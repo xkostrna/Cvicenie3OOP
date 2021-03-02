@@ -1,6 +1,6 @@
 package sk.stuba.fei.uim.oop;
 
-public class Student {
+public class Student implements Comparable<Student> {
     private int ID;
     private String name;
     private String surname;
@@ -62,5 +62,9 @@ public class Student {
         else {
             System.out.println("Age : " +getAge());
         }
+    }
+
+    public int compareTo(Student o) {
+        return this.name.compareTo(o.name);
     }
 }

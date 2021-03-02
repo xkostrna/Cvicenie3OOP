@@ -1,5 +1,8 @@
 package sk.stuba.fei.uim.oop;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class Main {
@@ -7,8 +10,16 @@ public class Main {
 
     public static void main(String[] args) {
         // testStudentClass();
-        Student[] students = createStudentArray(3);
+        Student[] students = createStudentArray(5);
+        showAllStudentsInfo(students);
         sortStudents(students);
+        showAllStudentsInfo(students);
+    }
+
+    public static void showAllStudentsInfo(Student[] studentsToShow) {
+        for (Student student : studentsToShow) {
+            student.showStudentInfo();
+        }
     }
 
     public static void testStudentClass() {
@@ -53,12 +64,11 @@ public class Main {
     }
 
     public static void sortStudentsTopDown(Student[] arrayToSort) {
-        System.out.println("1");
+        Arrays.sort(arrayToSort, Student::compareTo);
     }
 
     public static void sortStudentsDownTop(Student[] arrayToSort) {
-        System.out.println("2");
+        Arrays.sort(arrayToSort, Collections.reverseOrder(Student::compareTo));
     }
-
 
 }
