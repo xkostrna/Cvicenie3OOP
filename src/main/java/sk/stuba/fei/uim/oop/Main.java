@@ -9,20 +9,21 @@ public class Main {
     public static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        // testStudentClass();
-        Student[] students = createStudentArray(5);
-        showAllStudentsInfo(students);
-        sortStudents(students);
+        //testStudentClass();
+        Student[] students = createStudentsArray(5);
+        sortByAge(students);
         showAllStudentsInfo(students);
     }
 
     public static void showAllStudentsInfo(Student[] studentsToShow) {
+        System.out.println("-----showAllStudentsInfo()-----");
         for (Student student : studentsToShow) {
             student.showStudentInfo();
         }
     }
 
     public static void testStudentClass() {
+        System.out.println("-----testStudentClass()-----");
         Student student = new Student("Thomas", "Newman", 21);
         student.showStudentInfo();
 
@@ -30,18 +31,20 @@ public class Main {
         student1.showStudentInfo();
     }
 
-    public static Student[] createStudentArray(int numberOfStudents) {
+    public static Student[] createStudentsArray(int numberOfStudents) {
+        System.out.println("-----createStudentArray()------");
         String[] studentNames = new String[] {"Antony", "Joshua", "Fero", "Andreu", "Johny", "Mortar"};
         String[] surNames = new String[] {"Newman", "Oldman", "Getter", "Setter", "Mony", "Fielder"};
         Student[] students = new Student[numberOfStudents];
 
         for (int i = 0; i < numberOfStudents; i++) {
-            students[i] = new Student(studentNames[i], surNames[i], i+10);
+            students[i] = new Student(studentNames[i], surNames[i], (int)(Math.random()*100));
         }
         return students;
     }
 
     public static void sortStudents(Student[] arrayToSort) {
+        System.out.println("-----sortStudents()------");
         final byte TOP_DOWN = 1;
         final byte DOWN_TOP = 2;
         final boolean TURN_OFF = false;
@@ -64,11 +67,18 @@ public class Main {
     }
 
     public static void sortStudentsTopDown(Student[] arrayToSort) {
+        System.out.println("-----sortStudentsTopDown()------");
         Arrays.sort(arrayToSort, Student::compareTo);
     }
 
     public static void sortStudentsDownTop(Student[] arrayToSort) {
+        System.out.println("-----sortStudentsDownTop()------");
         Arrays.sort(arrayToSort, Collections.reverseOrder(Student::compareTo));
+    }
+
+    public static void sortByAge(Student[] arrayToSort) {
+        System.out.println("-----sortByAge()------");
+        Arrays.sort(arrayToSort, Collections.reverseOrder(new sortByAge()));
     }
 
 }
