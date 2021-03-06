@@ -37,19 +37,19 @@ public class Student implements Comparable<Student> {
     }
 
     public int getID() {
-        return ID;
+        return this.ID;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public String getSurname() {
-        return surname;
+        return this.surname;
     }
 
     public int getAge() {
-        return age;
+        return this.age;
     }
 
     public void showStudentInfo() {

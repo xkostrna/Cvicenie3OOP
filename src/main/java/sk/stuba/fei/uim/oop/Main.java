@@ -2,28 +2,31 @@ package sk.stuba.fei.uim.oop;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Scanner;
 
 public class Main {
     public static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        //testStudentClass();
         Student[] students = createStudentsArray(5);
-        sortByAge(students);
+        sortStudentsByName(students);
         showAllStudentsInfo(students);
+
     }
 
-    public static void showAllStudentsInfo(Student[] studentsToShow) {
-        System.out.println("-----showAllStudentsInfo()-----");
+    public static void showAllStudentsInfo(final Student[] studentsToShow) {
         for (Student student : studentsToShow) {
             student.showStudentInfo();
         }
     }
 
+    public static void showAllStudentsAge(final Student[] studentsToShow) {
+        for (Student student : studentsToShow) {
+            System.out.println(student.getAge());
+        }
+    }
+
     public static void testStudentClass() {
-        System.out.println("-----testStudentClass()-----");
         Student student = new Student("Thomas", "Newman", 21);
         student.showStudentInfo();
 
@@ -31,10 +34,9 @@ public class Main {
         student1.showStudentInfo();
     }
 
-    public static Student[] createStudentsArray(int numberOfStudents) {
-        System.out.println("-----createStudentArray()------");
-        String[] studentNames = new String[] {"Antony", "Joshua", "Fero", "Andreu", "Johny", "Mortar"};
-        String[] surNames = new String[] {"Newman", "Oldman", "Getter", "Setter", "Mony", "Fielder"};
+    public static Student[] createStudentsArray(final int numberOfStudents) {
+        final String[] studentNames = new String[] {"Antony", "Joshua", "Fero", "Andreu", "Johny", "Mortar"};
+        final String[] surNames = new String[] {"Newman", "Oldman", "Getter", "Setter", "Mony", "Fielder"};
         Student[] students = new Student[numberOfStudents];
 
         for (int i = 0; i < numberOfStudents; i++) {
@@ -43,8 +45,7 @@ public class Main {
         return students;
     }
 
-    public static void sortStudents(Student[] arrayToSort) {
-        System.out.println("-----sortStudents()------");
+    public static void sortStudentsByName(Student[] arrayToSort) {
         final byte TOP_DOWN = 1;
         final byte DOWN_TOP = 2;
         final boolean TURN_OFF = false;
@@ -56,9 +57,11 @@ public class Main {
             byte choice = scanner.nextByte();
             if (choice == TOP_DOWN) {
                 sortStudentsTopDown(arrayToSort);
+                break;
             }
             else if (choice == DOWN_TOP){
                 sortStudentsDownTop(arrayToSort);
+                break;
             }
             else {
                 getChoice = TURN_OFF;
@@ -67,17 +70,18 @@ public class Main {
     }
 
     public static void sortStudentsTopDown(Student[] arrayToSort) {
-        System.out.println("-----sortStudentsTopDown()------");
         Arrays.sort(arrayToSort, Student::compareTo);
     }
 
     public static void sortStudentsDownTop(Student[] arrayToSort) {
-        System.out.println("-----sortStudentsDownTop()------");
         Arrays.sort(arrayToSort, Collections.reverseOrder(Student::compareTo));
     }
 
-    public static void sortByAge(Student[] arrayToSort) {
-        System.out.println("-----sortByAge()------");
+    public static void sortByAgeAscend(Student[] arrayToSort) {
+        Arrays.sort(arrayToSort, new sortByAge());
+    }
+
+    public static void sortByAgeDescend(Student[] arrayToSort) {
         Arrays.sort(arrayToSort, Collections.reverseOrder(new sortByAge()));
     }
 
